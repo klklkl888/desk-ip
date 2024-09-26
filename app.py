@@ -1,17 +1,25 @@
-from flask import Flask, jsonify, request
-import requests
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-LICENSED_IP = "192.168.78.48"  # Replace this with the actual licensed IP
+# A list of authorized serial numbers (this can be replaced with a database)
+AUTHORIZED_SERIALS = ["SERIAL12345", "SERIAL67890", "SERIAL98765"]
 
-@app.route('/check_ip', methods=['GET'])
-def check_ip():
-    public_ip = request.remote_addr  # Get client's IP
-    if public_ip == LICENSED_IP:
-        return jsonify({"status": "success", "message": "IP is licensed."}), 200
+@app.route('/check_serial', methods=['POST'])
+def check_serial():
+    data = request.get_json()
+
+    # Ensure the serial number is provided in the request
+    if 'serial_number' not in data:
+        return jsonify({"authorized": False, "message": "Serial number not provided"}), 400
+
+    serial_number = data['serial_number']
+
+    # Check if the serial number is in the list of authorized serials
+    if serial_number in AUTHORIZED_SERIALS:
+        return jsonify({"authorized": True, "message": "Serial number is authorized"}), 200
     else:
-        return jsonify({"status": "failure", "message": "IP not licensed."}), 403
+        return jsonify({"authorized": False, "message": f"Unauthorized serial number: {serial_number}"}), 403
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    app.run(debug=True)
