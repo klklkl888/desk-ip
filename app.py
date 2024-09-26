@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 # A list of authorized serial numbers (this can be replaced with a database)
-AUTHORIZED_SERIALS = ["SERIAL12345", "SERIAL67890", "SERIAL98765"]
+AUTHORIZED_SERIALS = ["R6N0CV13K171258", "SERIAL67890", "SERIAL98765"]
 
 @app.route('/check_serial', methods=['POST'])
 def check_serial():
