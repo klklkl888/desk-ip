@@ -3,7 +3,7 @@ import requests
 
 app = Flask(__name__)
 
-LICENSED_IP = " 192.168.78.48"  # Replace this with the actual licensed IP
+LICENSED_IP = "192.168.78.48"  # Replace this with the actual licensed IP
 
 @app.route('/check_ip', methods=['GET'])
 def check_ip():
