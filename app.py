@@ -1,14 +1,17 @@
 from flask import Flask, jsonify, request
-import requests
 
 app = Flask(__name__)
 
-LICENSED_IP = "192.168.78.48"  # Replace this with the actual licensed IP
+# List of licensed IPs
+LICENSED_IPS = [
+    "192.168.78.48",  # Replace this with the actual licensed IPs
+    "203.0.113.5",    # Add more IPs as needed
+]
 
 @app.route('/check_ip', methods=['GET'])
 def check_ip():
     public_ip = request.remote_addr  # Get client's IP
-    if public_ip == LICENSED_IP:
+    if public_ip in LICENSED_IPS:
         return jsonify({"status": "success", "message": "IP is licensed."}), 200
     else:
         return jsonify({"status": "failure", "message": "IP not licensed."}), 403
