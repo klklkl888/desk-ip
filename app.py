@@ -7,7 +7,8 @@ LICENSED_IPS = [
     "192.168.0.67", 
     '112.196.47.98',# Replace this with the actual licensed IPs new era ip
     '192.168.1.10',
-    '42.105.13.1'
+    '42.105.13.1',
+    '42.105.13.237'
 ]
 
 @app.route('/check_ip', methods=['GET'])
