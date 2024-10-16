@@ -6,6 +6,7 @@ app = Flask(__name__)
 LICENSED_IPS = [
     "192.168.202.48",  # Replace this with the actual licensed IPs
     "2402:3a80:1fd2:b3c7:3567:86ca:769e:15f5",  # Add more IPs as needed
+    "127.0.0.1",
 ]
 
 @app.route('/check_ip', methods=['GET'])
