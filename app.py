@@ -5,8 +5,6 @@ app = Flask(__name__)
 # List of licensed IPs
 LICENSED_IPS = [
     "192.168.0.67",  # Replace this with the actual licensed IPs
-    "2402:3a80:1fd2:b3c7:3567:86ca:769e:15f5", 
-    # Add more IPs as needed
     '192.168.1.10'
 ]
 
